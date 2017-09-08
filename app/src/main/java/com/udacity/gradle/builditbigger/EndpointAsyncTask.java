@@ -1,9 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.example.pepovpc.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -15,32 +13,18 @@ import java.io.IOException;
 /**
  * Created by kev on 3/21/16.
  */
-class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
+class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
-    String url = "http://10.0.2.2:8080/_ah/api/";
-    Uri builtUri = Uri.parse(url).buildUpon().build();
+    private MainActivityFragment mainActivityFragment;
 
     @Override
-    protected String doInBackground(Context... params) {
-        //HttpURLConnection urlConnection = (HttpURLConnection) builtUri.openConnection();
-        if(myApiService == null) {  // Only do this once
-//            MyApi.Builder builder = new
-//                    MyApi.Builder(AndroidHttp.newCompatibleTransport(),
-//                    new AndroidJsonFactory(), null)
-//                    // options for running against local devappserver
-//                    // ­ 10.0.2.2 is localhost's IP address in Android emulator
-//                    // ­ turn off compression when running against local devappserver
-//                    .setRootUrl("http://10.0.3.2:8080/_ah/api/")
-//                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-//                        @Override
-//                        public void initialize(AbstractGoogleClientRequest<?>
-//                                                       abstractGoogleClientRequest) throws IOException {
-//                            abstractGoogleClientRequest.setDisableGZipContent(true);
-//                        }
-//                    });
-//            // end options for devappserver
+    protected String doInBackground(MainActivityFragment... params) {
 
+        mainActivityFragment = params[0];
+        context = mainActivityFragment.getActivity();
+
+        if(myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new
                     AndroidJsonFactory(), null)
                     .setRootUrl("https://joketestingapp.appspot.com//_ah/api/");
@@ -48,7 +32,6 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
             myApiService = builder.build();
         }
 
-        context = params[0];
 
 
         try {
@@ -60,12 +43,8 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        /*// Create Intent to launch JokeFactory Activity
-        Intent intent = new Intent(context, DisplayJokeActivity.class);
-        // Put the string in the envelope
-        intent.putExtra(DisplayJokeActivity.JOKE_KEY,result);
-        context.startActivity(intent);
-*/
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        mainActivityFragment.loadedJoke = result;
+        mainActivityFragment.launchDisplayJokeActivity();
     }
 }

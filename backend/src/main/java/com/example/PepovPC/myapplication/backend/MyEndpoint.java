@@ -43,7 +43,7 @@ public class MyEndpoint {
     public MyBean tellJoke(){
         MyBean response = new MyBean();
         Joker joker = new Joker();
-        response.setData(joker.tellJoke());
+        response.setData(joker.getRandomJoke());
         return response;
     }
 

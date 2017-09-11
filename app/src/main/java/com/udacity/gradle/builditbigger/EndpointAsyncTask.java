@@ -1,6 +1,5 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.pepovpc.myapplication.backend.myApi.MyApi;
@@ -15,14 +14,12 @@ import java.io.IOException;
  */
 class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
     private static MyApi myApiService = null;
-    private Context context;
     private MainActivityFragment mainActivityFragment;
 
     @Override
     protected String doInBackground(MainActivityFragment... params) {
 
         mainActivityFragment = params[0];
-        context = mainActivityFragment.getActivity();
 
         if(myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new

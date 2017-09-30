@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">androidjoker</string>
+    <string name="joke_intent">joke</string>
+    <string name="joke_error">There is no joke for today!</string>
+</resources>

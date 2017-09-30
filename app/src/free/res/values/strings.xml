@@ -1,5 +1,4 @@
 <resources>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="instructions">Press the button for a FREE joke!</string>
+    <string name="instruction_text">Press the button for a POOR joke!</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.android.jokefactory;
+package com.example.android.androidjoker;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

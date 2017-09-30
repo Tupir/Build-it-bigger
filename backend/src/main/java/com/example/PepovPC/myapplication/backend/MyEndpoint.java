@@ -21,8 +21,7 @@ import javax.inject.Named;
         version = "v1",
         namespace = @ApiNamespace(
                 ownerDomain = "backend.myapplication.PepovPC.example.com",
-                ownerName = "backend.myapplication.PepovPC.example.com",
-                packagePath = ""
+                ownerName = "backend.myapplication.PepovPC.example.com"
         )
 )
 public class MyEndpoint {

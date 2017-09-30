@@ -8,10 +8,7 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
 
-
-/**
- * Created by kev on 3/21/16.
- */
+// from there https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints
 class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
     private static MyApi myApiService = null;
     private MainActivityFragment mainActivityFragment;
@@ -19,17 +16,12 @@ class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
     @Override
     protected String doInBackground(MainActivityFragment... params) {
 
+        MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new
+                AndroidJsonFactory(), null)
+                .setRootUrl("https://joketestingapp.appspot.com//_ah/api/");
+
+        myApiService = builder.build();
         mainActivityFragment = params[0];
-
-        if(myApiService == null) {
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new
-                    AndroidJsonFactory(), null)
-                    .setRootUrl("https://joketestingapp.appspot.com//_ah/api/");
-
-            myApiService = builder.build();
-        }
-
-
 
         try {
             return myApiService.tellJoke().execute().getData();
@@ -41,7 +33,9 @@ class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        mainActivityFragment.loadedJoke = result;
-        mainActivityFragment.launchDisplayJokeActivity();
+        mainActivityFragment.displayJokeActivity(result);
     }
+
+
+
 }

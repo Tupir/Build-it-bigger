@@ -1,4 +1,4 @@
-package com.example.android.jokefactory;
+package com.example.android.androidjoker;
 
 import org.junit.Test;
 

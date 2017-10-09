@@ -23,6 +23,7 @@ public class EndPointAsyncTaskTest{
             @Override
             protected void onPostExecute(String result) {
                 assertNotNull(result);
+                assertTrue(!result.isEmpty());
                 assertTrue(result != null);
                 System.out.println(result);
                 latch.countDown();

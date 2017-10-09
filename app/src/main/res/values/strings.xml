@@ -4,4 +4,5 @@
     <string name="action_refresh">refresh</string>
     <string name="banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="joke_intent">joke</string>
+    <string name="no_connection">Check your connection</string>
 </resources>

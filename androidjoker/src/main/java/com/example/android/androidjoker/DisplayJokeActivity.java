@@ -35,6 +35,7 @@ public class DisplayJokeActivity extends AppCompatActivity {
     }
 
 
+
     public void showPaidImage(){
         imageView.setVisibility(View.VISIBLE);
     }

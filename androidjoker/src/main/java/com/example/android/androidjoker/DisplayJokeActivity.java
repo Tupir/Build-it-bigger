@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class DisplayJokeActivity extends AppCompatActivity {
     private TextView textview;
     private ImageView imageView;
+    private String jooke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,9 @@ public class DisplayJokeActivity extends AppCompatActivity {
 
         textview = (TextView) findViewById(R.id.joke_text);
         imageView = (ImageView) findViewById(R.id.joke_image);
-        String jooke = getIntent().getStringExtra(getString(R.string.joke_intent));
+        if (getIntent().hasExtra(getString(R.string.joke_intent))) {
+            jooke = getIntent().getStringExtra(getString(R.string.joke_intent));
+        }
         boolean paid = getIntent().getBooleanExtra("version", false);
 
         if (jooke != null) {

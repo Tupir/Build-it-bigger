@@ -34,7 +34,7 @@ class EndpointAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
             myApiService = builder.build();
         }
 
-            mainActivityFragment = params[0];
+        mainActivityFragment = params[0];
 
         try {
             return myApiService.tellJoke().execute().getData();
